@@ -1,0 +1,21 @@
+{
+    "project_name": "Django Globus Portal App",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "description": "Django Globus Portal App",
+    "author_name": "globus.org",
+    "domain_name": "globus.org",
+    "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@globus.org",
+    "version": "0.1.0",
+    "open_source_license": [
+      "MIT",
+      "BSD",
+      "GPLv3",
+      "Apache Software License 2.0",
+      "Not open source"
+    ],
+    "timezone": "UTC",
+    "use_drf": "n",
+    "globus_client_id": "4a217739-081e-47db-ab94-b8f9090d1d82",
+    "globus_secret_key": "GGU2Zcr96HweOdwNpRaw/Z0Gz+TFv+X1svYmfS14NsM="
+  }
+  
