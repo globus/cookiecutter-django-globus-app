@@ -44,4 +44,4 @@ SEARCH_INDEXES = {
             },
         ],
     }
-} {{cookiecutter.globus_search_indices}}
+}

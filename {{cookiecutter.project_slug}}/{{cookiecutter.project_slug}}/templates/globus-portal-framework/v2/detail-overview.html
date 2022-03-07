@@ -12,12 +12,12 @@
           <div class="col-md-6">
             <table class="table table-striped table-bordered">
               <tbody>
-              {{files}}
+              {{ files }}
               {% block detail_general_metadata %}
               {% for item in formatted_files|first %}
               <tr>
-                <td>{{item.title}}</td>
-                <td>{{item.value|truncatechars:32}}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.value|truncatechars:32 }}</td>
               </tr>
               {% endfor %}
               {% endblock %}
