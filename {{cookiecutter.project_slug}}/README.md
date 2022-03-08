@@ -1,27 +1,14 @@
-# Django Globus Portal Framework Example
 
-The portal here serves as a starting point for bootstrapping a portal. Details
-for configuration values can be found in the Documentation.
+# Cookiecutter Django Globus App
 
-### Installation 
+This cookiecutter project serves as a starting point for using the Django Globus Portal Framework (DGPF). Please
+see the installation instructions below to get an example application running using DGPF.
 
-First, clone the portal code into your local development environment:
+### Requirements
+* Python3
+* PIP
 
-    git clone https://github.com/globus/django-globus-portal-framework-example.git
-    cd django-globus-portal-framework-example.git
-   
-Next, setup a python environment. We recommend conda, but any installation with
-Python 3.7+ with Pip will worok:
- 
-    conda create -n myportal pip
-    conda activate myportal
-    
-Finally, install Globus Portal Framework
-
-    pip install django-globus-portal-framework
-    
 ### Setup
-
 Before you start your portal, you will need to create a Globus Developer App to enable
 Globus Auth in the portal. Without it, login will not work. Go to developers.globus.org,
 create a new app, and ensure the following:
@@ -29,19 +16,46 @@ create a new app, and ensure the following:
 * Native app **is not checked**
 * Redirect URL is set to http://localhost:8000/complete/globus
 
-Create a file for storing your credentials called 'myportal/local_settings.py'.
-It should reside next to the existing 'settings.py' file.
-
-`myportal/local_settings.py`:
-
-    SOCIAL_AUTH_GLOBUS_KEY = 'Put your Client ID here'
-    SOCIAL_AUTH_GLOBUS_SECRET = 'Put your Client Secret Here'
-
-### Running the Portal
-
-Configure and run your portal using the local `manage.py` file:
-
-    python manage.py migrate
-    python manage.py runserver localhost:8000
-
-Your portal should now be running at http://localhost:8000
+### Installation
+(Optional) Create a venv for installing modules:
+```
+	python3 -m venv <path_to_venv> 
+	source <path_to_venv>/bin/activate
+```
+1. Install cookiecutter
+```
+	pip install cookiecutter
+```
+2. Point cookiecutter to this repository:
+```
+	cookiecutter https://github.com/globus/cookiecutter-django-globus-app
+```
+3. Answer the questions (defaults are provided)
+```
+	project_name [Django Globus Portal App]: 
+	project_slug [django_globus_portal_app]: 
+	description [Django Globus Portal App]: 
+	author_name [globus]: 
+	domain_name [globus.org]: 
+	email [globus@globus.org]: 
+	version [0.1.0]: 
+	Select open_source_license:
+	1 - MIT
+	2 - BSD
+	3 - GPLv3
+	4 - Apache Software License 2.0
+	5 - Not open source
+	Choose from 1, 2, 3, 4, 5 [1]: 
+	timezone [UTC]: 
+	use_drf [n]: 
+	globus_client_id [4a217739-081e-47db-ab94-b8f9090d1d82]: 
+	globus_secret_key [GGU2Zcr96HweOdwNpRaw/Z0Gz+TFv+X1svYmfS14NsM=]: 
+	globus_search_index [4dcf50b9-14e7-4994-be36-6c6b11a73cd2]: 
+```
+4. Run the following Django related commands to build the application
+```
+	python manage.py migrate
+	python manage.py collectstatic --no-input
+	python manage.py runserver
+```
+5. Head to `http://localhost:8000` and click the Globus Login link in the upper right-hand corner
