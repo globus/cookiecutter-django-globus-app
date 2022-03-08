@@ -3,7 +3,7 @@ from {{ cookiecutter.project_slug }} import fields
 
 SEARCH_INDEXES = {
     'my-search-index': {
-        'uuid': parameters('GLOBUS_SEARCH_INDEX'),
+        'uuid': '{{ cookiecutter.globus_search_index }}',
         'name': 'My Search Index',
         'fields': [
             ('dc', fields.dc),

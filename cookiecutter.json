@@ -1,16 +1,16 @@
 {
-  "project_name": "Django Globus Portal App",
+  "project_name": "My Portal",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-  "description": "Django Globus Portal App",
-  "author_name": "globus",
-  "domain_name": "globus.org",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@globus.org",
+  "description": "A science gateway for cataloging datasets",
+  "author_name": "researcher",
+  "domain_name": "example.com",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@{{ cookiecutter.domain_name }}",
   "version": "0.1.0",
   "open_source_license": [
+    "Apache Software License 2.0",
     "MIT",
     "BSD",
     "GPLv3",
-    "Apache Software License 2.0",
     "Not open source"
   ],
   "timezone": "UTC",

@@ -56,8 +56,8 @@ coverage.xml
 *.pot
 
 # Django stuff:
+# local_settings.py
 *.log
-local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
@@ -89,7 +89,7 @@ ipython_config.py
 #   However, in case of collaboration, if having platform-specific dependencies or dependencies
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
-#Pipfile.lock
+# Pipfile.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
@@ -110,6 +110,15 @@ celerybeat.pid
 
 # mkdocs documentation
 /site
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
 
 # mypy
 .mypy_cache/

@@ -11,28 +11,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
 
-import environ
 import logging
-import os
 
 log = logging.getLogger(__name__)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Use django-environ to grab params from .env file
-parameters = environ.Env(DEBUG=(bool, True))
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep all secret keys used in production secret!
-# You can generate a secure secret key with `openssl rand -hex 32`
-SECRET_KEY = parameters('SECRET_KEY')
-# Your portal credentials for enabling user login via Globus Auth
-SOCIAL_AUTH_GLOBUS_KEY = parameters('SOCIAL_AUTH_GLOBUS_KEY')
-SOCIAL_AUTH_GLOBUS_SECRET = parameters('SOCIAL_AUTH_GLOBUS_SECRET')
 
 # This is a general Django setting if views need to redirect to login
 # https://docs.djangoproject.com/en/3.2/ref/settings/#login-url
@@ -117,7 +104,6 @@ DATABASES = {
     }
 }
 
-
 LOGGING = {
     'version': 1,
     'handlers': {
@@ -125,8 +111,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {'handlers': ['stream'], 'level': 'INFO'},
-        'globus_portal_framework': {'handlers': ['stream'], 'level': 'INFO'},
-        '{{ cookiecutter.project_slug }}': {'handlers': ['stream'], 'level': 'INFO'},
+        '{{ cookiecutter.project_slug }}': {'handlers': ['stream'], 'level': 'DEBUG'},
     },
 }
 
@@ -159,4 +144,10 @@ try:
     from .search import *
 except ImportError:
     expected_path = Path(__file__).resolve().parent / 'search.py'
+    log.warning(f'You should create a file for your search settings at {expected_path}')
+
+try:
+    from .local_settings import *
+except ImportError:
+    expected_path = Path(__file__).resolve().parent / 'local_settings.py'
     log.warning(f'You should create a file for your secrets at {expected_path}')
