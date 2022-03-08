@@ -27,7 +27,6 @@ def formatted_search_results(result):
 
 
 def formatted_files(result):
-    print(result)
     entry = result[0]
     return [
         [

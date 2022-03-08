@@ -1,8 +1,9 @@
+from .base import parameters
 from {{ cookiecutter.project_slug }} import fields
 
 SEARCH_INDEXES = {
     'my-search-index': {
-        'uuid': '4dcf50b9-14e7-4994-be36-6c6b11a73cd2',
+        'uuid': parameters('GLOBUS_SEARCH_INDEX'),
         'name': 'My Search Index',
         'fields': [
             ('dc', fields.dc),
