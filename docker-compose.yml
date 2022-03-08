@@ -1,0 +1,28 @@
+version: '3.9'
+
+volumes:
+  postgres_data: {}
+
+services:
+  database.{{ cookiecutter.project_slug }}:
+    image: postgres:9
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  backend.{{ cookiecutter.project_slug }}:
+    build: .
+    image: {{ cookiecutter.project_slug }}
+    tty: true
+    environment:
+      - PYTHONBUFFERED=1
+    volumes:
+      - .:/backend
+    ports:
+      - "8000:80"
+    depends_on:
+      - database.{{ cookiecutter.project_slug }}
