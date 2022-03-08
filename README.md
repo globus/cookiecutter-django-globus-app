@@ -52,10 +52,11 @@ create a new app, and ensure the following:
 	globus_secret_key [GGU2Zcr96HweOdwNpRaw/Z0Gz+TFv+X1svYmfS14NsM=]: 
 	globus_search_index [4dcf50b9-14e7-4994-be36-6c6b11a73cd2]: 
 ```
-4. Run the following Django related commands to build the application
+4. `cd ./<project_slug>`
+5. Run the following Django related commands to build the application
 ```
 	python manage.py migrate
 	python manage.py collectstatic --no-input
 	python manage.py runserver
 ```
-5. Head to `http://localhost:8000` and click the Globus Login link in the upper right-hand corner
+6. Head to `http://localhost:8000` and click the Globus Login link in the upper right-hand corner
