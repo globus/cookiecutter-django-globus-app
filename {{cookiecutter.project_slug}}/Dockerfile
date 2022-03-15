@@ -1,6 +1,9 @@
 FROM python:3.9
 
+ENV DJANGO_SETTINGS_MODULE={{ cookiecutter.project_slug }}.settings.base
 ENV PYTHONBUFFERED=1
+
+RUN mkdir /srv/logs
 
 RUN apt-get update \
     && pip install --upgrade pip

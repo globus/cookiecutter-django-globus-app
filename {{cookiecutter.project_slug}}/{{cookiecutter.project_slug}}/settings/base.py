@@ -149,5 +149,5 @@ except ImportError:
 try:
     from .local_settings import *
 except ImportError:
-    expected_path = Path(__file__).resolve().parent / 'local_settings.py'
+    expected_path = Path(__file__).resolve().parent / 'local.py'
     log.warning(f'You should create a file for your secrets at {expected_path}')
