@@ -147,7 +147,7 @@ except ImportError:
     log.warning(f'You should create a file for your search settings at {expected_path}')
 
 try:
-    from .local_settings import *
+    from .local import *
 except ImportError:
     expected_path = Path(__file__).resolve().parent / 'local.py'
     log.warning(f'You should create a file for your secrets at {expected_path}')

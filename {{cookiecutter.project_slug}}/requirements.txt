@@ -1,8 +1,10 @@
 Django==3.2.12
 django-globus-portal-framework==0.4.3
-{%- if cookiecutter.use_drf == "y" %}
+{%- if cookiecutter.use_django_rest_framework == "y" %}
 # Django REST Framework
 djangorestframework==3.13.1
 django-cors-headers==3.11.0
 {%- endif %}
+{%- if cookiecutter.use_docker == "y" %
 gunicorn==20.1.0
+{%- endif %}
