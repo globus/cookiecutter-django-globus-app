@@ -1,0 +1,60 @@
+{% load static index_template is_active %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {# CSS files #}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+
+    {# Django CSRF Protection #}
+    {% csrf_token %}
+
+    {% block search_head %}{% endblock %}
+
+    {# Extras #}
+    {%block headextras%}
+    {% index_template 'globus-portal-framework/v2/components/base-head-extras.html' as bhe %}
+    {% include bhe %}
+    {%endblock%}
+
+    <title>{%block title%}{%endblock%}</title>
+
+  </head>
+  <body>
+
+    {% block base_nav %}
+    {% index_template 'globus-portal-framework/v2/components/base-nav.html' as base_nav %}
+    {% include base_nav %}
+    {% endblock %}
+
+    {% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        {% block breadcrumb_items %}
+        <li class="breadcrumb-item {% is_active request 'index-selection' %}"><a class="h5" href="{% url 'index-selection' %}">Open Storage Network</a></li>
+        {% endblock %}
+      </ol>
+    </nav>
+    {% endblock %}
+
+    {% block tp_nav %}
+    {% index_template 'globus-portal-framework/v2/components/tabbed-nav.html' as tp_nav %}
+    {% include tp_nav %}
+    {% endblock %}
+
+    <!-- Page body -->
+    {%block body%}
+    {%endblock%}
+    {# Custom Fonts #}
+    <script type="text/javascript" src="{% static 'js/fontawesome-all.min.js' %}"></script>
+
+    {# Javascript #}
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

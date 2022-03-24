@@ -1,64 +1,37 @@
-import datetime
+from dateutil.parser import isoparse
+from urllib.parse import urlsplit, urlunsplit, urlunparse, urlencode
+
+import os
 
 
 def title(result):
-    return result[0]['dc']['titles'][0]['title']
+    return result[0]['files'][0]['filename']
 
 
-def formatted_search_results(result):
-    """
-    Create a curated list of the results we want to see on the search page.
-    """
-    entry = result[0]
-    return [
-        {
-            'title': 'Publisher',
-            'value': entry['dc']['publisher'],
-        },
-        {
-            'title': 'Format',
-            'value': entry['files'][0]['mime_type'],
-        },
-        {
-            'title': 'Size (bytes)',
-            'value': entry['files'][0]['length'],
-        },
+def date(result):
+    return isoparse(result[0]['dc']['dates'][0]['date'])
+
+
+def https_url(result):
+    path = urlsplit(result[0]['files'][0]['url']).path
+    return urlunsplit(('https', 'g-80370a.10bac.8443.data.globus.org', path,
+                       '', ''))
+
+
+def detail_general_metadata(result):
+    def generate_name(field_name):
+        return ' '.join([w.capitalize() for w in field_name.split('_')])
+    fields = [
+        {'field_name': k, 'value': v, 'name': generate_name(k)}
+        for k, v in result[0]['project_metadata'].items()
     ]
+    return fields
 
 
-def formatted_files(result):
-    entry = result[0]
-    return [
-        [
-            {
-                'title': 'Filename',
-                'value': file_obj['filename'],
-            },
-            {
-                'title': 'Format',
-                'value': file_obj['mime_type'],
-            },
-            {
-                'title': 'Size',
-                'value': file_obj['length'],
-            },
-            {
-                'title': 'MD5',
-                'value': file_obj['md5'],
-            },
-            {
-                'title': 'SHA256',
-                'value': file_obj['sha256'],
-            },
-        ] for file_obj in entry['files']
-    ]
-
-
-def dc(result):
-    for date in result[0]['dc']['dates']:
-        date['date'] = datetime.datetime.fromisoformat(date['date'])
-    return result[0]['dc']
-
-
-def files(result):
-    return result[0]['files']
+def globus_app_link(result):
+    url = result[0]['files'][0]['url']
+    parsed = urlsplit(url)
+    query_params = {'origin_id': parsed.netloc,
+                    'origin_path':  os.path.dirname(parsed.path)}
+    return urlunsplit(('https', 'app.globus.org', 'file-manager',
+                      urlencode(query_params), ''))

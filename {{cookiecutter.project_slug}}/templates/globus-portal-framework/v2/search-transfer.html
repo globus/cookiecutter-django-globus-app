@@ -1,0 +1,115 @@
+{%extends "globus-portal-framework/v2/base.html"%}
+{% load static is_active index_template %}
+
+{%block headextras%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}" />
+{% endblock %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item"><a class="h5" href="{% url 'index-selection' %}">{{globus_portal_framework.project_title}}</a></li>
+<li class="breadcrumb-item"><a class="h5" href="{% url 'search' globus_portal_framework.index %}?{{request.session.search.full_query}}">Search Query</a></li>
+<li class="breadcrumb-item active"><a class="h5">Transfer Data</a></li>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="row">
+  <div class="col">
+    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  </div>
+</div>
+
+
+<div class="row mb-5">
+
+  <div class="col-1"></div>
+  <div class="col-10">
+
+    <div class="mt-4">
+      {% index_template 'globus-portal-framework/v2/components/messages.html' as it_mess %}
+      {% include it_mess %}
+    </div>
+
+    {% if transfer_url %}
+    <div class="mt-4">
+      <div class="alert alert-info" role="alert">
+        <p>Your transfer has been started. You can view details in the
+          <a target="_blank" href="{{transfer_url}}">Globus Webapp</a></p>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="row mb-5">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-header">
+            <h3>Data Summary</h3>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped table-bordered">
+              <tbody>
+              <tr>
+                <td>Results</td>
+                <td>{{request.session.transfer_source.results}}</td>
+              </tr>
+              <tr>
+                <td>Total Size</td>
+                <td>{{request.session.transfer_source.total_size_humanized}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+
+    <form action="{% url 'search-transfer' globus_portal_framework.index %}" method="POST">
+
+      <h3 class="text-center">Choose Destination</h3>
+
+      <div class="form-group mb-2">
+        <div class="row form-group">
+          <label for="endpoint" class="col-sm-2 col-form-label">Endpoint</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control my-1" id="endpoint" name="endpoint" placeholder="Globus Endpoint UUID" value="{{transfer_destination.endpoint_id}}" hidden>
+            <input type="text" class="form-control my-1" placeholder="Globus Endpoint UUID" value="{{transfer_destination.endpoint}}" readonly>
+          </div>
+          <div class="col-sm-4">
+            <a href="{{helper_page_transfer_url}}" class="btn btn-primary mb-2">Choose Different Location</a>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="path" class="col-sm-2 col-form-label">Path</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control my-1" id="path" name="path" placeholder="/path/" value="{{transfer_destination.path}}" readonly>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row form-group">
+          <label for="label" class="col-sm-2 col-form-label">Transfer Label</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control my-1" id="label" name="label" value="{{transfer_destination.label}}" readonly>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+      </div>
+
+      {% csrf_token %}
+      <div class="text-center">
+        <button id="submit-button" type="submit" class="btn mb-2 btn-success">Transfer Data</button>
+        <small class="form-text text-muted">
+          Review your destination above before starting your transfer
+        </small>
+      </div>
+    </form>
+  </div>
+  <div class="col-1"></div>
+  </div>
+
+  {% endblock %}

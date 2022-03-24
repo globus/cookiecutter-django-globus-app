@@ -1,0 +1,56 @@
+{% extends "globus-portal-framework/v2/base.html" %} 
+{% load static is_active %} 
+
+{% block headextras %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}" />
+{% endblock %} 
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+  <a class="h5" href="{% url 'landing-page' %}">{{globus_portal_framework.project_title}}</a>
+</li>
+<li class="breadcrumb-item active"><a class="h5">About</a></li>
+{% endblock %} 
+
+{% block body %}
+<div class="row">
+  <div class="col">
+    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  </div>
+</div>
+
+<div class="row mb-5">
+  <div class="col"></div>
+  <div class="col-10">
+    <div>
+      <h1><a href="{% url 'search' 'terrafusion' %}">Terra</a></h1>
+      <p class="lead font-weight-bolder">
+        Terra is the flagship of NASA’s Earth Observing System (EOS). It was launched into orbit on December 18, 1999
+        and carries five instruments: the Moderate-resolution Imaging Spectroradiometer (MODIS), the Multi-angle Imaging
+        SpectroRadiometer (MISR), the Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER), the Clouds
+        and Earth’s Radiant Energy System (CERES), and the Measurements of Pollution in the Troposphere (MOPITT). The
+        mission remains healthy, and continues to enable scientists to address fundamental questions in Earth sciences.
+        Terra is currently one of the longest single-platform satellite record for studying Earth, making it one of our
+        most valuable satellite record for examining Earth’s climate and climate change. It is also amongst the most
+        popular NASA EOS datasets, serving not just the scientific community, but also government, commercial, and
+        educational communities.
+      </p>
+      <p class="">
+        <a href="https://digirolamo.web.illinois.edu/projects/terra-fusion/">Continue Reading about Terra</a>
+      </p>
+    </div>
+    <div>
+      <h1>Globus Search</h1>
+      <p class="lead font-weight-bolder">
+        Globus Search is a service which allows users to store data with visibility controls based on Globus Identities
+        and Groups. Data may be public, or only visible to certain sets of users. The primary features of the service
+        are APIs for storing and managing data, and visibility-filtered query APIs.
+      </p>
+      <p class="">
+        <a target="_blank" href="https://docs.globus.org/api/search/"> Continue reading about Globus Search </a>
+      </p>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+{% endblock %}
