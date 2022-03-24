@@ -49,7 +49,6 @@ source <path_to_venv>/bin/activate
 	Choose from 1, 2, 3, 4, 5 [1]: 
 	timezone [UTC]: 
 	use_django_rest_framework [n]:
-	use_docker [n]:
 	use_postgres [n]:
 	globus_client_id [f44c948b-8aa5-4881-85c5-e0a2300d96c4]:
 	globus_secret_key [ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8]:
