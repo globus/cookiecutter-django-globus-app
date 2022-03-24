@@ -1,4 +1,3 @@
-from .base import parameters
 from {{ cookiecutter.project_slug }} import fields
 
 SEARCH_INDEXES = {

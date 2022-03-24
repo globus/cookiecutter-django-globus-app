@@ -97,11 +97,22 @@ WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+postgres = "{{ cookiecutter.use_postgres }}"
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    if postgres == "y":
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "postgres",
+            "HOST": "database.{{ cookiecutter.project_slug }}",
+            "PORT": 5432,
+        }
+    else:
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
 }
 
 LOGGING = {
@@ -147,7 +158,7 @@ except ImportError:
     log.warning(f'You should create a file for your search settings at {expected_path}')
 
 try:
-    from .local_settings import *
+    from .local import *
 except ImportError:
-    expected_path = Path(__file__).resolve().parent / 'local_settings.py'
+    expected_path = Path(__file__).resolve().parent / 'local.py'
     log.warning(f'You should create a file for your secrets at {expected_path}')

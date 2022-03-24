@@ -1,0 +1,39 @@
+version: '3.9'
+
+volumes:
+  postgres_data: {}
+
+services:
+  database.{{ cookiecutter.project_slug }}:
+    image: postgres:9
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  proxy.{{ cookiecutter.project_slug }}:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/backend
+    depends_on:
+      - backend.{{ cookiecutter.project_slug }}
+
+  backend.{{ cookiecutter.project_slug }}:
+    build: .
+    image: {{ cookiecutter.project_slug }}
+    tty: true
+    environment:
+      - DJANGO_SETTINGS_MODULE={{ cookiecutter.project_slug }}.settings.base
+      - PYTHONBUFFERED=1
+    volumes:
+      - .:/backend
+    depends_on:
+      - database.{{ cookiecutter.project_slug }}
