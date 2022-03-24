@@ -5,10 +5,6 @@ django-globus-portal-framework==0.4.3
 djangorestframework==3.13.1
 django-cors-headers==3.11.0
 {%- endif %}
-{%- if cookiecutter.use_docker == "y" %}
-# Gunicorn
-gunicorn==20.1.0
-{%- endif %}
 humanize==4.0.0
 {%- if cookiecutter.use_postgres == "y" %}
 # PostgreSQL Adaptor
