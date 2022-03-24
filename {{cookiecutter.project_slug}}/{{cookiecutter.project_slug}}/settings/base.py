@@ -102,12 +102,14 @@ WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 postgres = "{{ cookiecutter.use_postgres }}"
 DATABASES = {
 {%- if cookiecutter.use_postgres == "y" -%}
+    # For postgres, you will need to add your own connection settings
+    # I.E. RDS, LOCALHOST, ETC.
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "database.{{ cookiecutter.project_slug }}",
+        "NAME": "",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "",
         "PORT": 5432,
     }
 {%- else -%}
