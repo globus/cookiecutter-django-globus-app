@@ -1,6 +1,6 @@
 {
   "project_name": "My Portal",
-  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+  "project_slug": "django_{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
   "description": "A science gateway for cataloging datasets",
   "author_name": "researcher",
   "domain_name": "example.com",
@@ -18,7 +18,7 @@
   "use_docker": "n",
   "use_postgres": "n",
   "globus_client_id": "f44c948b-8aa5-4881-85c5-e0a2300d96c4",
-  "globus_secret_key": "GGU2Zcr96HweOdwNpRaw/Z0Gz+TFv+X1svYmfS14NsM=",
+  "globus_secret_key": "ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8=",
   "globus_search_index": "25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec",
   "_copy_without_render": ["*.html", "*.js", "*.css"]
 }

@@ -101,20 +101,21 @@ WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
 postgres = "{{ cookiecutter.use_postgres }}"
 DATABASES = {
-    if postgres == "y":
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
-            "USER": "postgres",
-            "PASSWORD": "postgres",
-            "HOST": "database.{{ cookiecutter.project_slug }}",
-            "PORT": 5432,
-        }
-    else:
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+{%- if cookiecutter.use_postgres == "y" -%}
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "database.{{ cookiecutter.project_slug }}",
+        "PORT": 5432,
+    }
+{%- else -%}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+{%- endif -%}
 }
 
 LOGGING = {

@@ -51,9 +51,9 @@ source <path_to_venv>/bin/activate
 	use_django_rest_framework [n]:
 	use_docker [n]:
 	use_postgres [n]:
-	globus_client_id [4a217739-081e-47db-ab94-b8f9090d1d82]: 
-	globus_secret_key [GGU2Zcr96HweOdwNpRaw/Z0Gz+TFv+X1svYmfS14NsM=]: 
-	globus_search_index [4dcf50b9-14e7-4994-be36-6c6b11a73cd2]: 
+	globus_client_id [f44c948b-8aa5-4881-85c5-e0a2300d96c4]:
+	globus_secret_key [ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8]:
+	globus_search_index [25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec]:
 	```
 4. `cd ./<project_slug>`
 5. Run the following Django related commands to build the application
