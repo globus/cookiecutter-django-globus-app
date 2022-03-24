@@ -1,0 +1,22 @@
+{% extends 'globus-portal-framework/v2/components/facets/base.html' %}
+
+{% block facet_body %}
+  <ul class="list-group list-group-flush">
+  {% for field in facet.buckets %}
+    <li class="list-group-item py-1">
+      <input type="checkbox" class="facet-checkbox mr-1"
+             name="{{field.search_filter_query_key}}"
+             value="{{field.value}}"
+             autocomplete="off"
+             {% if field.checked %}
+             checked
+             {% endif %}
+      >
+      {% block facet_value %}
+      {{field.value|default:'No Value'}}
+      {% endblock %}
+    <span class="badge badge-secondary" style="float: right">{{field.count}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

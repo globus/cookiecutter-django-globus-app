@@ -16,7 +16,7 @@ import logging
 log = logging.getLogger(__name__)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -24,6 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # This is a general Django setting if views need to redirect to login
 # https://docs.djangoproject.com/en/3.2/ref/settings/#login-url
 LOGIN_URL = '/login/globus'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # This dictates which scopes will be requested on each user login
 SOCIAL_AUTH_GLOBUS_SCOPE = [
@@ -33,7 +35,7 @@ SOCIAL_AUTH_GLOBUS_SCOPE = [
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -73,7 +75,7 @@ ROOT_URLCONF = '{{ cookiecutter.project_slug }}.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / '{{ cookiecutter.project_slug }}' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,6 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
 

@@ -1,0 +1,23 @@
+{% extends 'globus-portal-framework/v2/components/facets/base.html' %}
+
+{% comment %}
+This is a highly customized search feature which significantly changes facets. It
+requires a custom view to fetch the filtering ranges, and some custom javascript
+to render the range fields.
+{% endcomment %}
+{% block facet_body %}
+
+  <div id="facet-slider-{{forloop.counter0}}" class="my-3"></div>
+  <label id="slider-amount-label-{{forloop.counter0}}" class="text-center" for="slider-amount-{{forloop.counter0}}"></label>
+  <input
+          type="text"
+          class="facet-slider"
+          {% if facet.filter_low and facet.filter_high %}
+          value="{{facet.filter_low}}--{{facet.filter_high}}"
+          {% endif %}
+          name="{{facet.filter_query_key}}"
+          id="slider-amount-{{forloop.counter0}}"
+          readonly hidden style="border:0;">
+{% endblock %}
+
+

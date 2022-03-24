@@ -1,0 +1,10 @@
+{% block base_facet %}
+<div class="card mb-3">
+  <div class="card-header">{% block facet_name %}{{facet.name}}{% endblock %}</div>
+
+  <div class="card-body my-0 py-0">
+    {% block facet_body %}{% endblock %}
+  </div>
+</div>
+
+{% endblock %}

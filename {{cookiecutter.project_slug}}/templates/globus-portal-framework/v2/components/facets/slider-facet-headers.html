@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+let facets = [
+{% for facet in search.facets %}
+  {% if facet.filter_type == 'range' %}
+   {
+     id: {{forloop.counter0}},
+     min: {{facet.lower_bound|floatformat}},
+     max: {{facet.upper_bound|floatformat}},
+     filterLow: {{facet.filter_low|default:'null'}} || {{facet.lower_bound|default:'null'}},
+     filterHigh: {{facet.filter_high|default:'null'}} || {{facet.upper_bound|default:'null'}},
+     // A custom step size is useful for large ranges. Default is 1.
+     // This will create 20 'steps' for each filter.
+     //step: ({{facet.upper_bound|floatformat}} - {{facet.lower_bound|floatformat}}) / 20,
+   },
+ {% endif %}
+{% endfor %}
+]
+
+facets.forEach(function(facet) {
+  var fsId = "#facet-slider-" + facet.id;
+  var amountId = "#slider-amount-" + facet.id;
+  var amountLabel = "#slider-amount-label-" + facet.id;
+  $( function() {
+    $( fsId ).slider({
+          range: true,
+          min: facet.min,
+          max: facet.max,
+          step: facet.step,
+          values: [ facet.filterLow, facet.filterHigh ],
+          slide: function( event, ui ) {
+            $( amountId ).val( ui.values[ 0 ] + "--" + ui.values[ 1 ] );
+            $( amountLabel ).text( ui.values[ 0 ] + " -- " + ui.values[ 1 ] );
+          }
+    });
+    $( amountLabel ).text($( fsId ).slider( "values", 0 ) + " -- " + $( fsId ).slider( "values", 1 ) );
+  })
+});
+
+function filterSearch(page=1) {
+  //copy as a hidden field so we don't change the look of the page
+  var page = $('<input>').attr({type: 'hidden', id: 'foo',
+                               name: 'page', value: page});
+  var input = $('#search-input').clone().attr('type','hidden');
+  $('.facet-slider').each( function() {
+    if ($(this).val() == '') {
+      $('#' + $(this).attr('id')).remove();
+    }
+  });
+  $('#facet-form').prepend(page).prepend(input).submit();
+}
+
+</script>

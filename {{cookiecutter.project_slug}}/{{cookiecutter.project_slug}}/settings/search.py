@@ -1,47 +1,60 @@
 from {{ cookiecutter.project_slug }} import fields
 
+def get_rfm(search_result):
+    if search_result[0].get("remote_file_manifest"):
+        return [search_result[0]["remote_file_manifest"]]
+    else:
+        return []
+
+
 SEARCH_INDEXES = {
-    'my-search-index': {
-        'uuid': '{{ cookiecutter.globus_search_index }}',
-        'name': 'My Search Index',
-        'fields': [
-            ('dc', fields.dc),
-            ('title', fields.title),
-            ('formatted_search_results', fields.formatted_search_results),
-            ('formatted_files', fields.formatted_files),
+    "terrafusion": {
+        "uuid": "{{ cookiecutter.globus_search_index }}",
+        "name": "OSN",
+        "template_override_dir": "osn",
+        "fields": [
+            "dc",
+            "files",
+            "project_metadata",
+            ("date", fields.date),
+            ("title", fields.title),
+            ("detail_general_metadata", fields.detail_general_metadata),
+            ("https_url", fields.https_url),
+            ("copy_to_clipboard_link", fields.https_url),
+            ("globus_app_link", fields.globus_app_link),
         ],
-        'facets': [
+        "facets": [
             {
-                'name': 'Publisher',
-                'field_name': 'dc.publisher',
-                'size': 10,
-                'type': 'terms'
-            },
-            {
-                'name': 'Type',
-                'field_name': 'dc.subjects.subject',
-                'size': 10,
-                'type': 'terms'
-            },
-            {
-                'name': 'Type',
-                'field_name': 'dc.formats',
-                'size': 10,
-                'type': 'terms'
-            },
-            {
-                'name': 'File Size (Bytes)',
-                'type': 'numeric_histogram',
-                'field_name': 'files.length',
-                'size': 10,
-                'histogram_range': {'low': 5000, 'high': 10000},
+                "name": "Location",
+                "field_name": "project_metadata.location",
             },
             {
                 "name": "Dates",
                 "field_name": "dc.dates.date",
                 "type": "date_histogram",
-                "date_interval": "hour",
+                "date_interval": "year",
+            },
+            {
+                "name": "Orbit Groups",
+                "field_name": "project_metadata.orbit_path_name",
+            },
+            {
+                "name": "Orbit",
+                "field_name": "project_metadata.orbit_path_number",
+                "type": "numeric_histogram",
+                "histogram_range": {"low": 0, "high": 240},
+                "filter_type": "range",
+                "size": 40,
+            },
+            {
+                "name": "Subjects",
+                "field_name": "dc.subjects.subject",
+            },
+            {
+                "name": "Contributors",
+                "field_name": "dc.contributors.contributorName",
             },
         ],
+        "sort": [{"field_name": "dc.dates.date", "order": "asc"}],
     }
 }
