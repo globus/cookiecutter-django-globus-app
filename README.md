@@ -57,6 +57,11 @@ source <path_to_venv>/bin/activate
 4. `cd ./<project_slug>`
 5. Run the following Django related commands to build the application
 	```
+	(Optional)
+	python3 -m venv <path_to_venv> 
+	source <path_to_venv>/bin/activate
+
+	pip install -r requirements.txt
 	python manage.py migrate
 	python manage.py collectstatic --no-input # If using runserver locally, this step does not need to be run
 	python manage.py runserver
