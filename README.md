@@ -33,23 +33,11 @@ source <path_to_venv>/bin/activate
 	```
 3. Answer the questions (defaults are provided)
 	```
-	project_name [My Portal]: 
-	project_slug [django_my_portal]: 
-	description [A science gateway for cataloging datasets]: 
+	project_name [Globus Portal]: 
+	project_slug [django_globus_portal]: 
+	description [A web app for managing project data]: 
 	author_name [researcher]: 
-	domain_name [example.com]: 
-	email [researcher@example.com]: 
 	version [0.1.0]: 
-	Select open_source_license:
-	1 - Apache Software License 2.0
-	2 - MIT
-	3 - BSD
-	4 - GPLv3
-	5 - Not open source
-	Choose from 1, 2, 3, 4, 5 [1]: 
-	timezone [UTC]: 
-	use_django_rest_framework [n]:
-	use_postgres [n]:
 	globus_client_id [f44c948b-8aa5-4881-85c5-e0a2300d96c4]:
 	globus_secret_key [ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8]:
 	globus_search_index [25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec]:
@@ -57,10 +45,6 @@ source <path_to_venv>/bin/activate
 4. `cd ./<project_slug>`
 5. Run the following Django related commands to build the application
 	```
-	(Optional)
-	python3 -m venv <path_to_venv> 
-	source <path_to_venv>/bin/activate
-
 	pip install -r requirements.txt
 	python manage.py migrate
 	python manage.py collectstatic --no-input # If using runserver locally, this step does not need to be run
