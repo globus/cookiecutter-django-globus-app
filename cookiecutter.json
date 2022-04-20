@@ -14,10 +14,10 @@
     "Not open source"
   ],
   "timezone": "UTC",
-  "use_django_rest_framework": "n",
   "use_postgres": "n",
   "globus_client_id": "f44c948b-8aa5-4881-85c5-e0a2300d96c4",
   "globus_secret_key": "ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8=",
   "globus_search_index": "25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec",
-  "_copy_without_render": ["*.html", "*.js", "*.css"]
+  "globus_portal_endpoint_id": "",
+  "_copy_without_render": ["staticfiles/*", "templates/*"]
 }

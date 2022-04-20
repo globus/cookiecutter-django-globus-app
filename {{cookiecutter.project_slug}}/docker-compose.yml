@@ -20,6 +20,8 @@ services:
     image: {{ cookiecutter.project_slug }}
     tty: true
     environment:
+      # Flip to 'production' for AWS deployments
+      - ENVIRONMENT=local
       - DJANGO_SETTINGS_MODULE={{ cookiecutter.project_slug }}.settings.base
       - PYTHONBUFFERED=1
     volumes:

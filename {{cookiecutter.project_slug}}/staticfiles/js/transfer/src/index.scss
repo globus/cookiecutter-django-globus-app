@@ -1,0 +1,25 @@
+html, body {
+    font-family: museosans,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #333;
+}
+  
+h1 { font-size: 30px; }
+h2 { font-size: 26px; }
+h3 { font-size: 18px; }
+h5 { font-size: 16px; }
+h1, h2, h3, h4, h5, a {
+    color: #708FCA;
+    font-weight: 300;
+}
+
+#transfer-home {
+    padding: 0 1rem 0 1rem;
+}
+
+.file-browser {
+    height: 350px;
+    max-height: 350px;
+    overflow-y: scroll;
+}

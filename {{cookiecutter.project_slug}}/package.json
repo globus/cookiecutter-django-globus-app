@@ -1,0 +1,54 @@
+{
+  "name": "cookiecutter-django-globus-app",
+  "version": "0.1.0",
+  "description": "A web app for managing project data",
+  "main": "index.js",
+  "scripts": {
+    "build-local": "NODE_ENV=local ./node_modules/.bin/webpack --watch",
+    "build-production": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/globus/cookiecutter-django-globus-app.git"
+  },
+  "keywords": [
+    "globus",
+    "research",
+    "portal",
+    "application",
+    "django",
+    "react"
+  ],
+  "author": "researcher",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/globus/cookiecutter-django-globus-app/issues"
+  },
+  "homepage": "https://github.com/globus/cookiecutter-django-globus-app#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.0",
+    "js-cookie": "^3.0.1",
+    "react": "^18.0.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.4",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "node-sass": "^7.0.1",
+    "recoil": "^0.7.0",
+    "resolve-url-loader": "^5.0.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

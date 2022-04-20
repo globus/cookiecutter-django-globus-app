@@ -14,7 +14,6 @@ from globus_portal_framework.gsearch import (
     get_index,
     prepare_search_facets,
     get_pagination,
-    get_subject,
 )
 
 import globus_portal_framework.exc
