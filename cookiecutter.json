@@ -3,7 +3,7 @@
   "project_slug": "django_{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
   "description": "A science gateway for cataloging datasets",
   "author_name": "researcher",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@{{ cookiecutter.domain_name }}",
+  "email": "researcher@gateway.org",
   "version": "0.1.0",
   "globus_client_id": "f44c948b-8aa5-4881-85c5-e0a2300d96c4",
   "globus_secret_key": "ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8=",
