@@ -12,16 +12,16 @@ import {
 const PortalEndpoint = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [PORTAL_ENDPOINT_ID, SET_PORTAL_ENDPOINT_ID] = useState(null);
+  const [transferRequest, setTransferRequest] = useState(null);
+
   const [portalCollection, setPortalCollection] = useRecoilState(PortalCollectionAtom);
   const [selectedPortalItems, setSelectedPortalItems] = useRecoilState(SelectedPortalItemsAtom);
-  const [transferRequest, setTransferRequest] = useState(null);
 
   const searchCollection = useRecoilValue(SearchCollectionAtom);
   const searchEndpoint = useRecoilValue(SearchEndpointAtom);
 
   const [navigation, setNavigation] = useState(['/~/']);
-
-  const [PORTAL_ENDPOINT_ID, SET_PORTAL_ENDPOINT_ID] = useState(null);
 
   useEffect(() => {
     const config = JSON.parse(document.getElementById('transfer-config').innerHTML);
@@ -190,7 +190,7 @@ const PortalEndpoint = (props) => {
         <button className='btn btn-primary btn-sm mb-2' onClick={handleBackClick}>
           Back
         </button>
-        {portalCollection['DATA'].length > 0 &&
+        {portalCollection && portalCollection['DATA'].length > 0 &&
           portalCollection['DATA'].map((item) => {
             return (
               <div key={`${item['last_modified']}-${item['name']}`} className='form-check'>
