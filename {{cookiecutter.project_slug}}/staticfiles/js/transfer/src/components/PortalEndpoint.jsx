@@ -97,6 +97,7 @@ const PortalEndpoint = (props) => {
         message: 'Please search and select a destination endpoint',
         status_code: '500',
       });
+      setLoading(false);
     } else {
       setLoading(true);
       const csrfToken = Cookies.get('csrftoken');
@@ -119,6 +120,7 @@ const PortalEndpoint = (props) => {
 
       if (transferItems.length === 0) {
         setError({ status_code: 500, message: 'Please select items to transfer'});
+        setLoading(false);
       } else {
         let transferRequestPayload = {
           source_endpoint: PORTAL_ENDPOINT_ID,
@@ -142,6 +144,7 @@ const PortalEndpoint = (props) => {
           }
         } catch (error) {
           setError(error);
+          setLoading(false);
         }
         setTransferRequest(transferRequest);
         setLoading(false);
