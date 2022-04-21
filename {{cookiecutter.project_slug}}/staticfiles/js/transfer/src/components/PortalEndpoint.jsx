@@ -117,31 +117,35 @@ const PortalEndpoint = (props) => {
         });
       }
 
-      let transferRequestPayload = {
-        source_endpoint: PORTAL_ENDPOINT_ID,
-        destination_endpoint: searchEndpoint['id'],
-        transfer_items: transferItems,
-      };
+      if (transferItems.length === 0) {
+        setError({ status_code: 500, message: 'Please select items to transfer'});
+      } else {
+        let transferRequestPayload = {
+          source_endpoint: PORTAL_ENDPOINT_ID,
+          destination_endpoint: searchEndpoint['id'],
+          transfer_items: transferItems,
+        };
 
-      try {
-        const response = await fetch('/api/endpoints/transfer/', {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken,
-          },
-          body: JSON.stringify(transferRequestPayload),
-        });
-        var transferRequest = await response.json();
-        if ('code' in transferRequest && transferRequest['code'] !== 'Accepted') {
-          throw transferRequest;
+        try {
+          const response = await fetch('/api/endpoints/transfer/', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify(transferRequestPayload),
+          });
+          var transferRequest = await response.json();
+          if ('code' in transferRequest && transferRequest['code'] !== 'Accepted') {
+            throw transferRequest;
+          }
+        } catch (error) {
+          setError(error);
         }
-      } catch (error) {
-        setError(error);
+        setTransferRequest(transferRequest);
+        setLoading(false);
       }
-      setTransferRequest(transferRequest);
-      setLoading(false);
     }
   };
 
