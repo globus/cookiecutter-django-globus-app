@@ -32,6 +32,7 @@ const PortalEndpoint = (props) => {
   const getPortalCollection = async (path = null) => {
     setError(null);
     setLoading(true);
+    setSelectedPortalItems([]);
     try {
       let url = `/api/endpoints/${PORTAL_ENDPOINT_ID}/ls`;
       if (path) {
@@ -44,7 +45,6 @@ const PortalEndpoint = (props) => {
         },
       });
       var collection = await response.json();
-      console.log(collection['code']);
 
       if ('code' in collection) {
         throw collection;
@@ -103,13 +103,18 @@ const PortalEndpoint = (props) => {
       const csrfToken = Cookies.get('csrftoken');
       let transferItems = [];
       for (let portalItem of selectedPortalItems) {
+
+        let sourcePath = portalCollection['absolute_path']
+        ? portalCollection['absolute_path']
+        : portalCollection['path']
+        sourcePath = `${sourcePath}${portalItem['name']}`;
+        
         let destinationPath = searchCollection['absolute_path']
           ? searchCollection['absolute_path']
           : searchCollection['path'];
         destinationPath = `${destinationPath}${portalItem['name']}`;
 
         let recursive = portalItem['type'] == 'dir' ? true : false;
-        let sourcePath = `${portalCollection['absolute_path']}${portalItem['name']}`;
 
         transferItems.push({
           source_path: sourcePath,
