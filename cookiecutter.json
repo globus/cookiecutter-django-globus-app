@@ -1,7 +1,7 @@
 {
-  "project_name": "My Portal",
+  "project_name": "Globus Portal",
   "project_slug": "django_{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-  "description": "A science gateway for cataloging datasets",
+  "description": "A web app for managing project data",
   "author_name": "researcher",
   "email": "researcher@gateway.org",
   "version": "0.1.0",
