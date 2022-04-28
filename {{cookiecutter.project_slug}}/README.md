@@ -36,9 +36,9 @@ source <path_to_venv>/bin/activate
 	```
 3. Answer the questions (defaults are provided)
 	```
-	project_name [Globus Portal]: 
-	project_slug [django_globus_portal]: 
-	description [A web app for managing project data]: 
+	project_name [My Portal]: 
+	project_slug [django_my_portal]: 
+	description [A science gateway for cataloging datasets]: 
 	author_name [researcher]: 
 	email [researcher@example.com]: 
 	version [0.1.0]: 
@@ -50,6 +50,10 @@ source <path_to_venv>/bin/activate
 4. `cd ./<project_slug>`
 5. Run the following Django and NPM related commands to build the application
 	```
+	(Optional)
+	python3 -m venv <path_to_venv> 
+	source <path_to_venv>/bin/activate
+
 	# Below is needed to build the transfer client, which is built using React - https://reactjs.org/
 	npm install
 	NODE_ENV=local ./node_modules/.bin/webpack

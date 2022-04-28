@@ -1,12 +1,8 @@
 Django==3.2.12
 django-globus-portal-framework==0.4.3
-{%- if cookiecutter.use_django_rest_framework == "y" %}
-# Django REST Framework
 djangorestframework==3.13.1
 django-cors-headers==3.11.0
-{%- endif %}
+gunicorn==20.1.0
 humanize==4.0.0
-{%- if cookiecutter.use_postgres == "y" %}
-# PostgreSQL Adaptor
-psycopg2-binary==2.9.3
-{%- endif %}
+ssm-parameter-store==19.11.0
+whitenoise==6.0.0
