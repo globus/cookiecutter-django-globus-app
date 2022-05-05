@@ -1,7 +1,10 @@
-
 # Cookiecutter Django Globus App
 
 This cookiecutter project serves as a starting point for using the [Django Globus Portal Framework](https://github.com/globus/django-globus-portal-framework) (DGPF). Documentation for DGPF can be found [here](https://django-globus-portal-framework.readthedocs.io/en/stable/). Please see the installation instructions below to get an example application running using DGPF.
+
+This project along with DGPF also showcases using three of [Globus's APIs](https://docs.globus.org/api/) in a custom application - Auth, Search, and Transfer. This is just one example of many different ways Globus APIs can be used.
+
+To see what is installed on the backend for the running the local API, check the requirements.txt file for more info. For the transfer portion of the project, check the package.json file to see what is running on the client.
 
 ### Requirements
 * [Node Active LTS Version](https://nodejs.org/download/release/latest-v16.x/)
@@ -45,7 +48,7 @@ source <path_to_venv>/bin/activate
 	globus_client_id [f44c948b-8aa5-4881-85c5-e0a2300d96c4]:
 	globus_secret_key [ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8]:
 	globus_search_index [25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec]:
-	globus_portal_endpoint []:
+	globus_portal_endpoint [ddb59aef-6d04-11e5-ba46-22000b92c6ec]:
 	```
 4. `cd ./<project_slug>`
 5. Run the following Django and NPM related commands to build the application
