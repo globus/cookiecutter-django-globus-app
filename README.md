@@ -58,7 +58,7 @@ source <path_to_venv>/bin/activate
 
 	# Below is needed to build the transfer client, which is built using React - https://reactjs.org/
 	npm install
-	NODE_ENV=local ./node_modules/.bin/webpack
+	./node_modules/.bin/webpack
 
 	python manage.py migrate
 	python manage.py collectstatic --no-input # If using runserver locally, this step does not need to be run
