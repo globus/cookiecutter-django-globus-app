@@ -53,11 +53,13 @@ source <path_to_venv>/bin/activate
 4. `cd ./<project_slug>`
 5. Run the following Django and NPM related commands to build the application
 	```
+	# Run this first before any of the optional node and npm commands below
+	pip install -r requirements.txt
+
 	# Below is needed to build the transfer client, which is built using React - https://reactjs.org/
 	npm install
 	NODE_ENV=local ./node_modules/.bin/webpack
 
-	pip install -r requirements.txt
 	python manage.py migrate
 	python manage.py collectstatic --no-input # If using runserver locally, this step does not need to be run
 	python manage.py runserver
