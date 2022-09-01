@@ -17,8 +17,10 @@ services:
 
   backend.{{ cookiecutter.project_slug }}:
     build: .
-    image: {{ cookiecutter.project_slug }}
+    image: {{ cookiecutter.project_slug }}:latest
     tty: true
+    ports:
+      - "8000:8000"
     environment:
       # Flip to 'production' for AWS deployments
       - ENVIRONMENT=local
