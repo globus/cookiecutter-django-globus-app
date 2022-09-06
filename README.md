@@ -66,7 +66,7 @@ source <path_to_venv>/bin/activate
 	```
 6. Head to `http://localhost:8000` and click the Globus Login link in the upper right-hand corner
 
-### Containerized Environment 
+### Local Containerized Environment 
 Using the containerized environment assumes you have some working knowledge of [Docker](https://docs.docker.com/).
 ##### Getting a local environment up and running
 1. Build the container from the Dockerfile
@@ -85,3 +85,5 @@ docker exec -it {{ cookiecutter.project_slug }} /bin/bash
 docker exec -it {{ cookiecutter.project_slug }} python manage.py collectstatic --no-input
 docker exec -it {{ cookiecutter.project_slug }} python manage.py makemigrations
 ```
+
+Coming soon... production AWS deployment using containers, kubernetes, and nginx ingress!
