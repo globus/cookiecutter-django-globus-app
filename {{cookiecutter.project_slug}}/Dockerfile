@@ -26,8 +26,7 @@ COPY . /backend
 WORKDIR /backend
 
 RUN npm install
-RUN npm rebuild node-sass
 RUN npm run build-production
 
 EXPOSE 80
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/backend/entrypoint.sh"]

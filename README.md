@@ -66,5 +66,24 @@ source <path_to_venv>/bin/activate
 	```
 6. Head to `http://localhost:8000` and click the Globus Login link in the upper right-hand corner
 
-### Containerized Environment 
-Coming Soon! :) 
+### Local Containerized Environment 
+Using the containerized environment assumes you have some working knowledge of [Docker](https://docs.docker.com/).
+##### Getting a local environment up and running
+1. Build the container from the Dockerfile
+	```
+	docker build -t {{ cookiecutter.project_slug }}:latest .
+    ```
+2. Get it up and running
+    ```
+	docker run --name {{ cookiecutter.project_slug }} -p 8000:8000 -it {{ cookiecutter.project_slug }}:latest
+    ```
+That's pretty much it! Go to [http://localhost:8000](http://localhost:8000) in your browser and you should see the default web portal. This process spins up a python Django web server running gunicorn on port 8000.
+
+You can also interact with the python Django container once it's running:
+```
+docker exec -it {{ cookiecutter.project_slug }} /bin/bash
+docker exec -it {{ cookiecutter.project_slug }} python manage.py collectstatic --no-input
+docker exec -it {{ cookiecutter.project_slug }} python manage.py makemigrations
+```
+
+Coming soon... production AWS deployment using containers, kubernetes, and nginx ingress!
