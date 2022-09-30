@@ -13,7 +13,7 @@ The Installation below will set default values for the Globus CLIENT_ID and SECR
 If you want to use your own, go to [developers.globus.org](developers.globus.org), create a new app, and ensure the following:
 
 * Native app **is not checked**
-* Redirect URL is set to http://localhost:8000/complete/globus
+* Redirect URL is set to http://localhost:8000/complete/globus/
 
 The Installation process creates a file for storing your credentials called 
 `{{ cookiecutter.project_slug }}/settings/local.py`. It resides next to the 'settings.py' file. When asked for the `globus_client_id` and `globus_secret_key` below, use the ones created from the process above.
