@@ -1,0 +1,54 @@
+{% extends "globus-portal-framework/v2/search-about.html" %} 
+{% load static is_active %} 
+
+{% block headextras %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}" />
+{% endblock %} 
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+  <a class="h5" href="{% url 'landing-page' %}">{{globus_portal_framework.project_title}}</a>
+</li>
+<li class="breadcrumb-item active"><a class="h5">About</a></li>
+{% endblock %} 
+
+{% block body %}
+<div class="row">
+  <div class="col">
+    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  </div>
+</div>
+
+<div class="row mb-5">
+  <div class="col"></div>
+  <div class="col-10">
+    <div>
+      <h1><a href="{% url 'search' 'fema' %}">Low Altitude Disaster Imagery (LADI)</a></h1>
+      <p class="lead font-weight-bolder">
+        Computer vision capabilities have rapidly been advancing and are expected to become an 
+        important component to incident and disaster response. However, the majority of computer 
+        vision capabilities are not meeting public safety’s needs, such as support for search and 
+        rescue, due to the lack of appropriate training data and requirements. For example in 2019, 
+        a leading computer vision benchmark mislabeled a flooded region as a “toilet,” or a highway 
+        surrounded by flooding as a “runway.” In response, a group at MIT developed a dataset of 
+        images collected by the Civil Air Patrol of various disasters. The raw images were previously 
+        released into the public domain. Two key distinctions are the low altitude, oblique perspective 
+        of the imagery and disaster-related features, which are rarely featured in computer vision 
+        benchmarks and datasets. 
+      </p>
+    </div>
+    <div>
+      <h1>Globus Search</h1>
+      <p class="lead font-weight-bolder">
+        Globus Search is a service which allows users to store data with visibility controls based on Globus Identities
+        and Groups. Data may be public, or only visible to certain sets of users. The primary features of the service
+        are APIs for storing and managing data, and visibility-filtered query APIs.
+      </p>
+      <p class="">
+        <a target="_blank" href="https://docs.globus.org/api/search/"> Continue reading about Globus Search </a>
+      </p>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+{% endblock %}
